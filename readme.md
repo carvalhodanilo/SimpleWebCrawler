@@ -52,7 +52,7 @@ A resposta da API será como a seguinte:
 >{
 >  "success": true,                        // Sempre é retornado, indica o sucesso da busca.
 >  "msg": "Busca realizada com sucesso!",  // Sempre é retornado, mensagem descrevendo o resultado.
->  "response": [                        -> // Response é retornado somente se houver dados.
+>  "response": [                           // Response é retornado somente se houver dados.
 >    {
 >      "name": "Cadeado De Latão Lt-30 30mm Pado",
 >      "link": "https://produto.mercadolivre.com.br/LB-971589589-cadeado-de-l...",
