@@ -10,7 +10,7 @@ Bibliotecas utilizadas:
  - Morgan (Middleware que captura as requisições, gerando logs para a API)
  - Request (Responsável em realizar as requisições HTTP)
 
-### Instalação da API
+## Instalação da API
 
 Requerimentos:
  - Necessário ter instalado versões estáveis do Node.Js / NPM
