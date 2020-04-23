@@ -13,7 +13,8 @@ exports.getProducts = async (req, res) => {
     if (!params || !params.search || !params.limit || isNaN(params.limit)) {
       return res.status(400).json({
         success: false,
-        msg: 'Corpo da requisição incorreto! Por favor verifique os campos.'
+        msg: 'Corpo da requisição incorreto! Por favor verifique os campos.',
+        data: returnData 
       })
     }
 
@@ -21,13 +22,15 @@ exports.getProducts = async (req, res) => {
         $ = cheerio.load(body);
 
         $('.search-results .results-item').each(function(index){
-            let price = $(this).find('.rowItem .item__info-link .item__price').text().trim().replace('R$ ', '').replace(' ', '.')
+            let price_frac = $(this).find('.rowItem .item__info-link .price__fraction').text().trim().replace('R$ ', '').replace(' ', '').replace('.','')
+            let price_dec  = $(this).find('.rowItem .item__info-link .price__decimals').text().trim().replace('.','') || '0'
             let name  = $(this).find('.rowItem .item__info-link .main-title').text().trim()
             let store = $(this).find('.rowItem .item__info-link .item__brand-title-tos').text().trim().replace('por ', '') || null
             let link  = $(this).find('.rowItem .item__info-link').attr('href');
             let state = $(this).find('.rowItem .item__info-link .item__condition').text().trim() || 
                         $(this).find('.rowItem .item__info-link .item__location').text().trim()  || null
             
+            let price = parseFloat(`${price_frac}.${price_dec}`)
             returnData.push({ name, link, price, store, state })
             
             if(index >= params.limit - 1) return false;
@@ -47,17 +50,17 @@ exports.getProducts = async (req, res) => {
     const retorno = {
         success: successReturn,
         msg: msgReturn,
-        response: returnData        
+        data: returnData        
     } 
 
     return res.status(statusCode).json(retorno);   
 };
 
 function getBodyPage(url) {
-    return requestPromise(url).then(response => {
-        if ( response.statusCode === 200 ) {
-            return response.body
+    return requestPromise(url).then(data => {
+        if ( data.statusCode === 200 ) {
+            return data.body
         }
-        return Promise.reject(response.statusCode)
+        return Promise.reject(data.statusCode)
     })
-}    
+}
