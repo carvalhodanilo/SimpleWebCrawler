@@ -16,7 +16,7 @@ app.use('/', index);
 app.use('/products', crawlerRoute);
 
 app.listen('3000', function () {
-    console.log(`Api funcionando corretamente em http://localhost:3000`)
+    console.log(`API funcionando corretamente em http://localhost:3000`)
 })
 
 module.exports = app;
