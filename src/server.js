@@ -7,7 +7,7 @@ const app = express();
 const index = require('./routes/index');
 const crawlerRoute = require('./routes/crawlerRoute');
 
-app.use(morgan('dev'));
+app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());

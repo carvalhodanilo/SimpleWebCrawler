@@ -28,7 +28,7 @@ exports.getProducts = async (req, res) => {
             let state = $(this).find('.rowItem .item__info-link .item__condition').text().trim() || 
                         $(this).find('.rowItem .item__info-link .item__location').text().trim()  || null
             
-            returnData.push({ price, name, link, store, state })
+            returnData.push({ name, link, price, store, state })
             
             if(index >= params.limit - 1) return false;
         })
