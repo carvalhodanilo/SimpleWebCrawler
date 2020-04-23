@@ -10,7 +10,7 @@ describe('Inicio dos testes', () => {
    });
 
    test('Acessa a rota /products e busca por um produto (parametros corretos)', async () => {
-      let data = {"search": "carro", "limit": 5 }
+      let data = {"search": "cadeado", "limit": 5 }
 
       const response = await request(server).post('/products').send(data)
       expect(response.body.success).toEqual(true)
@@ -26,7 +26,7 @@ describe('Inicio dos testes', () => {
    });   
 
    test('Acessa a rota /products e busca por um produto (chave de busca incorreta)', async () => {
-      let data = {"busca": "carro", "limit": 5 }
+      let data = {"busca": "cadeado", "limit": 5 }
 
       const response = await request(server).post('/products').send(data)
       expect(response.body.success).toEqual(false)
