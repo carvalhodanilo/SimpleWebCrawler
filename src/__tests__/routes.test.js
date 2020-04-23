@@ -25,7 +25,7 @@ describe('Inicio dos testes', () => {
       expect(response.status).toEqual(404);
    });   
 
-   test('Acessa a rota /products e busca por um produto (chave de busca incorreto)', async () => {
+   test('Acessa a rota /products e busca por um produto (chave de busca incorreta)', async () => {
       let data = {"busca": "carro", "limit": 5 }
 
       const response = await request(server).post('/products').send(data)
@@ -56,7 +56,7 @@ describe('Inicio dos testes', () => {
       const response = await request(server).post('/products').send(data)
       expect(response.body.success).toEqual(false)
       expect(response.status).toEqual(400);
-   });   
+   });
 
    test('Acessa a rota /products e busca por um produto (parâmetro "limit" não é um número)', async () => {
       let data = {"search": 3, "limit": "xxx" }
