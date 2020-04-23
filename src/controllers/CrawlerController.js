@@ -38,6 +38,12 @@ exports.getProducts = async (req, res) => {
         successReturn = false
     })
 
+    if(returnData.length === 0){
+        msgReturn = 'Chave de busca não encontrada.'
+        statusCode = 404
+        successReturn = false
+    }
+
     const retorno = {
         success: successReturn,
         msg: msgReturn,
